@@ -1,0 +1,63 @@
+= List of first time contributors
+
+This ugly Ruby script assembles a list of first-time contributors during a given month for a given repository.
+
+The script can be configured via env vars and at the very least, you need to export the env var `FTC_GITHUB_TOKEN`. This token can be created as a https://github.com/settings/tokens:[Personal access token] with no special permissions (public access only).
+
+Further options: 
+
+* `FTC_GITHUB_USERNAME`, your GitHub username (default: `jpkrohling`)
+* `FTC_GITHUB_ORGANIZATION`, the GitHub organization you want to find the first-time contributors (default: `jaegertracing`)
+* `FTC_MONTH`, the month to check for first-time contributors (default: current month)
+* `FTC_YEAR`, used with the `FTC_MONTH` to check for first-time contributors (default: current year)
+
+== Running
+
+```bash
+bundle exec list.rb
+```
+
+Or
+
+```bash
+bundle install
+./list.rb
+```
+
+Example output for the organization `jaegertracing` for the month of July 2018:
+
+```
+Users who first contributed this month (merged_at;user;URL)
+2018-07-05 19:13:52 UTC;Henrod;https://github.com/jaegertracing/jaeger/pull/911
+2018-07-04 23:24:52 UTC;TLadd;https://github.com/jaegertracing/jaeger-client-node/pull/272
+2018-07-26 04:01:44 UTC;chidokun;https://github.com/jaegertracing/documentation/pull/116
+2018-07-13 19:06:21 UTC;danehans;https://github.com/jaegertracing/jaeger-client-go/pull/323
+2018-07-09 13:34:55 UTC;jonahgeorge;https://github.com/jaegertracing/documentation/pull/101
+2018-07-23 13:16:19 UTC;mdvorak;https://github.com/jaegertracing/jaeger-client-java/pull/498
+2018-07-14 21:04:06 UTC;nyanshak;https://github.com/jaegertracing/jaeger/pull/934
+2018-07-06 07:57:30 UTC;quaff;https://github.com/jaegertracing/jaeger-client-java/pull/457
+2018-07-16 15:25:28 UTC;rmfitzpatrick;https://github.com/jaegertracing/jaeger-client-python/pull/200
+2018-07-17 13:39:08 UTC;rwkarg;https://github.com/jaegertracing/jaeger-client-csharp/pull/91
+2018-07-09 18:36:55 UTC;whistlinwilly;https://github.com/jaegertracing/jaeger/pull/912
+2018-07-20 15:18:29 UTC;yknx4;https://github.com/jaegertracing/jaeger-client-node/pull/279
+2018-07-25 00:38:39 UTC;yuribit;https://github.com/jaegertracing/jaeger-ui/pull/230
+2018-07-09 20:30:22 UTC;zdicesare;https://github.com/jaegertracing/jaeger/pull/815
+```
+
+=== Examples
+
+Running the list for June of the current year:
+```
+FTC_MONTH=6 bundle exec list.rb
+```
+
+Running the list for June 2017:
+```
+FTC_YEAR=2017 FTC_MONTH=6 bundle exec list.rb
+```
+
+Getting a list of first-time contributors for `kiali`:
+```
+FTC_ORGANIZATION=kiali bundle exec list.rb
+```
+
